@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const postSchema = new Schema({
+const postSchema = new mongoose.Schema({
   date: {
     type: String,
     required: [
@@ -42,6 +42,8 @@ const postSchema = new Schema({
   }
 });
 
-const Post = mongoose.model('Post', postSchema);
+// let Post = mongoose.model('Post', postSchema);
 
-module.exports = Post;
+module.exports = mongoose.models.Post || mongoose.model('Post', postSchema);
+
+// module.exports = Post;
