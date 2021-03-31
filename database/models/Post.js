@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const postSchema = new mongoose.Schema({
+const postSchema = new Schema({
   date: {
-    type: Date,
-    default: Date.now
+    type: String,
+    required: [
+      () => this.date.length < 0,
+      'when did you go?'
+    ]
   },
   name: {
     type: String,
@@ -15,9 +18,8 @@ const postSchema = new mongoose.Schema({
     type: String,
     trim: true,
     required: [
-      function ()
-        {return this.location.length > 0},
-        'tell me where this is!'
+      () => this.location.length < 0,
+      'where is it?'
     ],
   },
   latitude: {
@@ -34,8 +36,8 @@ const postSchema = new mongoose.Schema({
     type: String,
     trim: true,
     required: [
-      function() {return this.body.length > 0},
-      'please enter more details to remember me by!'
+      () => this.body.length < 0,
+      'tell me more!'
     ]
   }
 });
