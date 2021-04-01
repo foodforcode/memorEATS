@@ -14,8 +14,14 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, '../client/dist/')));
 
 app.get('/posts', (req, res) => {
-
-})
+  getAllPosts((err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
 
 
 app.post('/post', (req, res) => {
@@ -23,9 +29,10 @@ app.post('/post', (req, res) => {
     if(err) {
       console.log(err);
     } else {
+      console.log(res);
       res.status(201).send(data);
     }
-  })
+  });
 });
 
 app.listen(PORT, () => {
