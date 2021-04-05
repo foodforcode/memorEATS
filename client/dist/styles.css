@@ -1,21 +1,162 @@
-.Modal-Content {
+body {
+  background-color: mintcream !important;
+  color: #343a40;
+  line-height: 1 !important;
+  font-family: 'Raleway', sans-serif !important;
+}
+
+.img-item {
+  border-radius: 15px;
+  transition: all 200ms ease-in-out;
+  max-width: -webkit-fill-available;
+  margin: 0 auto;
+}
+
+.img-item:hover {
+  transform: scale(1.2);
+  box-shadow:rgba(115, 166, 173, 0.8) !important;
+}
+
+.img-modal {
+  max-width: 700px;
+  max-height: 35%;
+}
+
+p {
+  font-size: smaller;
+}
+
+.form-label {
+  padding: 5px 0 0 0 !important;
+}
+
+.btn-add, .btn-submit {
+  margin-top: 15px;
+}
+
+.row {
+  margin-top: 20px;
+}
+
+.card {
+  border-radius: 20px !important;
+  padding-top: 10px;
+  background-color: #EAEFF2;
+  transition: all 150ms ease-in-out;
+}
+
+.card:hover {
+  box-shadow: rgba(115, 166, 173, 0.4) !important;
+}
+
+.Modal {
   position: fixed;
-  background-color: rgba(0, 0, 0, .4);
-  backdrop-filter: blur(5px);
+  background-color: rgba(135, 186, 200, .3);
+  backdrop-filter: blur(3px);
   height: 100%;
   width: 100%;
   top: 0;
   left: 0;
   z-index: 30;
-  padding-top: 15%;
+  padding-top: 10%;
   font-family: 'Roboto', sans-serif;
+
 }
 
-.modal-background {
-  background-color: #f9f9f9;
+.Modal-Content {
+  background-color: rgba(201, 228, 231, 1);
   width: 50%;
+  /* height: 500px; */
   margin: 0 auto;
-  text-transform: uppercase;
-  padding: 15px 25px;
+  padding: 25px 25px;
+  /* vertical-align: middle; */
+  border-radius: 10px;
   z-index: 5;
+}
+
+.Modal-Img {
+  /* vertical-align: middle; */
+  /* display: inline-block; */
+  width: fit-content;
+  margin: 0 auto;
+  /* padding: 15% 0; */
+  border-radius: 10px;
+  z-index: 5;
+}
+
+.btn-close-modal {
+  float: right;
+}
+
+.btn-close-modal:hover {
+  cursor: pointer;
+}
+
+.post-name, .post-location {
+  display: inline;
+}
+
+.col-lg-12 {
+  padding-right: 0 !important;
+}
+
+.slideTransition {
+  animation-name: slidein;
+  animation-duration: .7s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+}
+
+.fadeTransition {
+  animation-name: fadein;
+  animation-duration: .7s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+}
+
+.fadeOut {
+  animation-name: fadeout;
+  animation-duration: .7s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes slidein {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes slideout {
+  0% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  0% {
+    opacity: 1
+  }
+  100% {
+    opacity: 0
+  }
 }

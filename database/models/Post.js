@@ -5,7 +5,7 @@ const postSchema = new mongoose.Schema({
   date: {
     type: String,
     required: [
-      () => this.date.length < 0,
+      () => this.length < 0,
       'when did you go?'
     ]
   },
@@ -17,10 +17,7 @@ const postSchema = new mongoose.Schema({
   location: {
     type: String,
     trim: true,
-    required: [
-      () => this.location.length < 0,
-      'where is it?'
-    ],
+    required: true,
   },
   latitude: {
     type: Number,
@@ -35,10 +32,7 @@ const postSchema = new mongoose.Schema({
   body: {
     type: String,
     trim: true,
-    required: [
-      () => this.body.length < 0,
-      'tell me more!'
-    ]
+    required: true
   }
 });
 
