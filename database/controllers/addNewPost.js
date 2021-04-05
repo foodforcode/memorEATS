@@ -7,6 +7,7 @@ const addNewPost = (data, callback) => {
     location: data.location || null,
     latitude: data.latidute || 0,
     longitude: data.longitude || 0,
+    image: data.image,
     body: data.body
   })
   entry.save((err) => {
