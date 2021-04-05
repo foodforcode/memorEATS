@@ -1,103 +1,149 @@
 import React from 'react';
+import search from '../../../database/controllers/yelpSearch.js';
 
 class Form extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       date: '',
       name: '',
-      // location: '',
+      location: '',
       // rating: '',
+      image: '',
       body: '',
-
     }
+    this.setDate = this.setDate.bind(this);
+    this.submitForm = this.submitForm.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.searchLocation = this.searchLocation.bind(this);
+    this.updateStateValue = this.updateStateValue.bind(this);
+  }
+
+  setDate (e) {
+    this.setState({
+      date: e.target.value
+    });
+  }
+
+  searchLocation (e) {
+    this.setState({
+      location: e.target.value
+    })
+  }
+
+  updateStateValue (e) {
+    let key = e.target.name;
+    this.setState({
+      [key]: e.target.value
+    });
+  }
+
+  closeModal () {
+    this.props.closeModal();
+  }
+
+  submitForm (e) {
+    e.preventDefault();
+    this.closeModal();
+    this.props.submitNewPost(e, this.state);
   }
 
   render() {
+    const divStyle = {
+      display: this.props.showModal ? 'block' : 'none'
+    }
     return (
       <>
-      <form class="row g-3">
-        <div class="col-md-4">
-          <label for="validationServer01" class="form-label">First name</label>
-          <input type="text" class="form-control is-valid" id="validationServer01" value="Mark" required/>
-          <div class="valid-feedback">
-            Looks good!
-          </div>
-        </div>
-        <div class="col-md-4">
-          <label for="validationServer02" class="form-label">Last name</label>
-          <input type="text" class="form-control is-valid" id="validationServer02" value="Otto" required/>
-          <div class="valid-feedback">
-            Looks good!
-          </div>
-        </div>
-        <div class="col-md-4">
-          <label for="validationServerUsername" class="form-label">Username</label>
-          <div class="input-group has-validation">
-            <span class="input-group-text" id="inputGroupPrepend3">@</span>
-            <input type="text" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required/>
-            <div id="validationServerUsernameFeedback" class="invalid-feedback">
-              Please choose a username.
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <label for="validationServer03" class="form-label">City</label>
-          <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required/>
-          <div id="validationServer03Feedback" class="invalid-feedback">
-            Please provide a valid city.
-          </div>
-        </div>
-        <div class="col-md-3">
-          <label for="validationServer04" class="form-label">State</label>
-          <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" required>
-            <option selected disabled value="">Choose...</option>
-            <option>...</option>
-          </select>
-          <div id="validationServer04Feedback" class="invalid-feedback">
-            Please select a valid state.
-          </div>
-        </div>
-        <div class="col-md-3">
-          <label for="validationServer05" class="form-label">Zip</label>
-          <input type="text" class="form-control is-invalid" id="validationServer05" aria-describedby="validationServer05Feedback" required/>
-          <div id="validationServer05Feedback" class="invalid-feedback">
-            Please provide a valid zip.
-          </div>
-        </div>
-        <div class="col-12">
-          <div class="form-check">
-            <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" required/>
-            <label class="form-check-label" for="invalidCheck3">
-              Agree to terms and conditions
-            </label>
-            <div id="invalidCheck3Feedback" class="invalid-feedback">
-              You must agree before submitting.
-            </div>
-          </div>
-        </div>
-        <div class="col-12">
-          <button class="btn btn-primary" type="submit">Submit form</button>
-        </div>
-      </form>
-
-
-
-
-
-
-
-
-
-        {/* <h3>Where did you eat?</h3>
-        <form>
-          <input
-            name="name"
+      <div>
+        {this.props.showModal ?
+          <div
+            className="Modal fadeTransition"
+            onClick={this.closeModal}
+            style={divStyle}>
+            <div
+            className="Modal-Content slideTransition"
+            onClick={e => e.stopPropagation()}>
+      <button type="button" className='btn-close btn btn-close-modal' onClick={this.closeModal}>✖</button>
+        <form className="row col-lg-12 validated" onSubmit={this.submitForm}>
+          <span></span>
+          <div className="col-md-12">
+            <label htmlFor="validationServer01" className="form-label">Date</label>
+            <input
+            type="date"
+            className="form-control"
+            id="validationServer01"
+            name="date"
+            value={this.state.date}
+            onChange={this.setDate}
             autoComplete="off"
             required />
-          <button>Save</button> */}
-        {/* </form> */}
+          </div>
+          <div className="col-md-12">
+            <label htmlFor="validationServer02" className="form-label">Name</label>
+            <input
+            type="text"
+            className={this.state.name.length > 0 ? "form-control" : "form-control .is-valid"}
+            id="validationServer02"
+            name="name"
+            value={this.state.name}
+            onChange={this.updateStateValue}
+            autoComplete="off"
+            required />
+          </div>
+          <div className="col-md-12">
+            <label htmlFor="validationServerUsername" className="form-label">Location</label>
+            <div className="input-group has-validation">
+              <input
+              type="text"
+              className="form-control"
+              id="validationServerUsername"
+              name="location"
+              value={this.state.location}
+              onChange={this.searchLocation}
+              autoComplete="off"
+              aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback"
+              required/>
+            </div>
+          </div>
+          <div className="col-md-12">
+            <label htmlFor="validationImage" className="form-label">Image URL</label>
+            <div className="input-group has-validation">
+              <input
+              type="text"
+              className="form-control"
+              id="validationImage"
+              name="image"
+              value={this.state.image}
+              onChange={this.updateStateValue}
+              autoComplete="off"
+              />
+            </div>
+          </div>
+          <div className="col-md-12">
+            <label
+            htmlFor="validationServer03"
+            className="form-label">Memories</label>
+            <textarea
+            type="text"
+            name="body"
+            className="form-control"
+            id="validationServer03"
+            value={this.state.body}
+            onChange={this.updateStateValue}
+            autoComplete="off"
+            aria-describedby="validationBody"
+            rows="3"
+            required />
+          </div>
+          <div className="col-12">
+            <button className="btn btn-light btn-submit" type="submit">Submit form</button>
+          </div>
+        </form>
+        </div>
+          </div>
+        : (null)}
+      </div>
       </>
     )
   }
