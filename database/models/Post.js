@@ -12,12 +12,10 @@ const postSchema = new mongoose.Schema({
   name: {
     type: String,
     trim: true,
-    required: true,
   },
   location: {
     type: String,
     trim: true,
-    required: true,
   },
   latitude: {
     type: Number,
@@ -29,10 +27,13 @@ const postSchema = new mongoose.Schema({
     min: -180,
     max: 180
   },
+  image: {
+    type: String,
+    trim: true,
+  },
   body: {
     type: String,
     trim: true,
-    required: true
   }
 });
 
