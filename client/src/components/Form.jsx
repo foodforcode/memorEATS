@@ -9,13 +9,14 @@ class Form extends React.Component {
       date: '',
       name: '',
       location: '',
-      // rating: '',
       image: '',
       body: '',
     }
     this.setDate = this.setDate.bind(this);
     this.submitForm = this.submitForm.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handlePhoto = this.handlePhoto.bind(this);
+    this.uploadPhoto = this.uploadPhoto.bind(this);
     this.searchLocation = this.searchLocation.bind(this);
     this.updateStateValue = this.updateStateValue.bind(this);
   }
@@ -37,6 +38,17 @@ class Form extends React.Component {
     this.setState({
       [key]: e.target.value
     });
+  }
+
+  handlePhoto(e) {
+    console.log(e.target.files);
+    this.setState({
+      image: e.target.files[0]
+    })
+  }
+
+  uploadPhoto (e) {
+
   }
 
   closeModal () {
@@ -107,16 +119,14 @@ class Form extends React.Component {
             </div>
           </div>
           <div className="col-md-12">
-            <label htmlFor="validationImage" className="form-label">Image URL</label>
+            <label htmlFor="validationImage" className="form-label">Image</label>
             <div className="input-group has-validation">
               <input
-              type="text"
+              type="file"
               className="form-control"
               id="validationImage"
               name="image"
-              value={this.state.image}
-              onChange={this.updateStateValue}
-              autoComplete="off"
+              onChange={this.handlePhoto}
               />
             </div>
           </div>
