@@ -22,8 +22,7 @@ class App extends React.Component {
     axios.post('/post', data)
       .then((response) => {
         this.setState({
-          showModal: false,
-          posts: response.data
+          showModal: false
         })
       })
       .catch((reject) => {
