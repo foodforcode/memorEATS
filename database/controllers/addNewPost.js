@@ -1,4 +1,5 @@
 const Post = require('../models/post.js');
+const axios = require('axios');
 
 const addNewPost = (data, callback) => {
   let entry = new Post({
