@@ -42,9 +42,10 @@ app.get('/posts', (req, res) => {
 
 
 app.post('/post', (req, res) => {
+  console.log(req.body);
   addNewPost(req.body, (err, data) => {
     if(err) {
-      console.log(err);
+      console.log('failed in server', err);
     } else {
       console.log(res);
       res.status(201).send(data);
