@@ -5,7 +5,16 @@ body {
   font-family: 'Raleway', sans-serif !important;
 }
 
+.app {
+  padding-bottom: 50px;
+}
+
+.img-container {
+  padding-top: 12px;
+}
+
 .img-item {
+  margin: 10px auto;
   border-radius: 15px;
   transition: all 200ms ease-in-out;
   max-width: -webkit-fill-available;
@@ -72,6 +81,7 @@ p {
   /* vertical-align: middle; */
   border-radius: 10px;
   z-index: 5;
+  overflow-y: auto;
 }
 
 .Modal-Img {
