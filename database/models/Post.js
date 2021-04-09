@@ -29,7 +29,7 @@ const postSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    trim: true,
+    trim: true
   },
   body: {
     type: String,
