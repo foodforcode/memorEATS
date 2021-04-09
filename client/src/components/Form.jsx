@@ -41,9 +41,9 @@ class Form extends React.Component {
   }
 
   handlePhoto(e) {
-    console.log(e.target.files);
+    console.log();
     this.setState({
-      image: e.target.files[0]
+      image: e.target.value
     })
   }
 
@@ -56,8 +56,8 @@ class Form extends React.Component {
   }
 
   submitForm (e) {
-    e.preventDefault();
     this.closeModal();
+    e.preventDefault();
     this.props.submitNewPost(e, this.state);
   }
 
@@ -119,16 +119,18 @@ class Form extends React.Component {
             </div>
           </div>
           <div className="col-md-12">
-            <label htmlFor="validationImage" className="form-label">Image</label>
-            <div className="input-group has-validation">
+            <label htmlFor="imageValidation" className="form-label">Image</label>
               <input
-              type="file"
+              type="text"
               className="form-control"
               id="validationImage"
               name="image"
-              onChange={this.handlePhoto}
+              value={this.state.image}
+              autoComplete="off"
+              name="image"
+              onChange={this.updateStateValue}
               />
-            </div>
+            {/* <img src={`${this.state.image}`} style={{maxWidth: 100}} /> */}
           </div>
           <div className="col-md-12">
             <label
