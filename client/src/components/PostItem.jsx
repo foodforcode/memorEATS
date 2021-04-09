@@ -31,13 +31,14 @@ class PostItem extends React.Component {
     }
     return (
       <div className="card col-md-4 col-lg-4 col-sm-6" key={this.props.id}>
-        <h4 className="card-title post-name">{this.props.name}</h4>
+        <h4 className="card-title post-name">📍 {this.props.name}</h4>
         <p>on {this.props.date} in {this.props.location}</p>
         <div className="card-body">
           {this.props.body}
-          <br />
-          {this.props.url ? <img class="img-item" width="100px" src={`${this.props.url}`} onClick={this.showModal}/>
+          <div className="img-container">
+          {this.props.url ? <img className="img-item" width="100px" src={`${this.props.url}`} onClick={this.showModal}/>
           : (null)}
+          </div>
         </div>
         {this.state.displayModal ?
           <div className="Modal"
