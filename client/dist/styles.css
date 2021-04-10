@@ -9,6 +9,11 @@ body {
   padding-bottom: 50px;
 }
 
+.title {
+  padding-top: 50px;
+  text-align:center;
+}
+
 .img-container {
   padding-top: 12px;
 }
@@ -74,7 +79,7 @@ p {
 
 .Modal-Content {
   background-color: rgba(201, 228, 231, 1);
-  width: 50%;
+  width: 500px;
   /* height: 500px; */
   margin: 0 auto;
   padding: 25px 25px;

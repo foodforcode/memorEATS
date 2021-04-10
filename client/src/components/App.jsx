@@ -57,6 +57,7 @@ class App extends React.Component {
   render() {
     return(
       <div className="app">
+        <h1 className="title">MEMOR(EATS)</h1>
         {this.state.showModal ?
         <Form submitNewPost={this.submitNewPost} closeModal={this.toggleModal} showModal={this.state.showModal} />
         : (
@@ -68,6 +69,7 @@ class App extends React.Component {
           </button>
           )
         }
+
         <PostContainer posts={this.state.posts} />
       </div>
     )
